@@ -21,9 +21,5 @@ COPY . .
 # Expose the HTTPS port
 EXPOSE 443
 
-# Add a script to obtain SSL certificates, start the server, and set up automatic renewal
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 # Set the entrypoint script as the default command
-CMD ["/entrypoint.sh"]
+CMD ["python", "main.py"]
