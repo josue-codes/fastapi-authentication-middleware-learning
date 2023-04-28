@@ -21,8 +21,6 @@ from src.auth import (
     generate_auth_token,
 )
 
-from src.config import Config
-
 
 STATIC_DIRECTORY = pathlib.Path(__file__).parent / 'static'
 
@@ -81,7 +79,5 @@ if __name__ == '__main__':  # pragma: no cover
     uvicorn.run(
         app=APP,
         host='0.0.0.0',
-        port=443,
-        ssl_certfile=Config.ssl_certfile,
-        ssl_keyfile=Config.ssl_keyfile
+        port=443
     )
