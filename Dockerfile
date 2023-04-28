@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 
 # Expose the HTTPS port
-EXPOSE 443
+EXPOSE 80
 
 # Set the entrypoint script as the default command
 CMD ["python", "main.py"]

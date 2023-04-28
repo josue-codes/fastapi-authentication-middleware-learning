@@ -84,5 +84,5 @@ if __name__ == '__main__':  # pragma: no cover
     uvicorn.run(
         app=APP,
         host='0.0.0.0',
-        port=443
+        port=80
     )
