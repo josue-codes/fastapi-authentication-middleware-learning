@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 #    rm -rf /var/lib/apt/lists/*
 
 # Copy your app's source code into the container
-COPY . .
+COPY . /app
 
 # Expose the HTTPS port
 EXPOSE 443
