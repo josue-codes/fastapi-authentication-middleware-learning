@@ -11,9 +11,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Certbot and other necessary tools
-RUN apt-get update && \
-    apt-get install -y certbot curl cron && \
-    rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && \
+#    apt-get install -y certbot curl cron && \
+#    rm -rf /var/lib/apt/lists/*
 
 # Copy your app's source code into the container
 COPY . .
