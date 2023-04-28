@@ -12,7 +12,7 @@ api_key_header = APIKeyHeader(name="api_key", auto_error=False)
 
 
 def authenticate_api_key(api_key: str | None) -> bool:
-    return api_key == Config.api_key
+    return api_key == Config().api_key
 
 
 def generate_auth_token() -> str:

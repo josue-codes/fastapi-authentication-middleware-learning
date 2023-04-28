@@ -48,6 +48,11 @@ for file_sys_obj in STATIC_DIRECTORY.iterdir():
 # )
 
 
+@APP.get("/")
+async def root():
+    return {"message": "Please authenticate at /auth/token to access other routes."}
+
+
 @APP.post('/auth/token')
 async def authenticate_user(api_key: bool = Depends(authenticate_api_key)):
     if api_key:
@@ -57,9 +62,9 @@ async def authenticate_user(api_key: bool = Depends(authenticate_api_key)):
     raise HTTPException(status_code=401, detail='Unauthorized')
 
 
-@APP.middleware('https')
+@APP.middleware('http')
 async def auth_middleware(request: Request, call_next):
-    if request.url.path == '/auth/token':
+    if request.url.path in ['/', '/auth/token']:
         response = await call_next(request)
     else:
         if authenticate_auth_token(request, AUTH_TOKENS):
