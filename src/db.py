@@ -33,7 +33,7 @@ async def create_user(
         raise UserExistsError(f'User {username} exists.')
     password = hashlib.sha256(password.encode()).hexdigest()
     user = User(
-        id=bson.objectid.ObjectId(),
+        _id=bson.objectid.ObjectId(),
         username=username,
         hashed_password=password
     )
@@ -75,7 +75,7 @@ async def update_user(
 
 
 class User(pydantic.BaseModel):
-    id: bson.objectid.ObjectId | None
+    _id: bson.objectid.ObjectId | None
     username: str
     hashed_password: str
 
