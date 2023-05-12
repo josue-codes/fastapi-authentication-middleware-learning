@@ -1,2 +1,5 @@
 fastapi
 uvicorn
+PyJWT
+pymongo
+pydantic
