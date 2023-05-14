@@ -50,7 +50,7 @@ class Database:
         self._collection = self._database.get_collection(collection_name)
 
     @property
-    def database(self) -> pymongo.collection.Database:
+    def database(self) -> pymongo.database.Database:
         return self._database
 
     @property
