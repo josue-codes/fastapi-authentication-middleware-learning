@@ -7,10 +7,7 @@ from src.log import get_logger
 from src.config import CONFIG
 
 
-LOGGER = get_logger(
-    __name__,
-    CONFIG.app_name
-)
+LOGGER = get_logger(__name__, CONFIG.app_name)
 
 
 class Token(pydantic.BaseModel):
