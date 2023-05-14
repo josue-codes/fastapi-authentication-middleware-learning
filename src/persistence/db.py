@@ -49,37 +49,13 @@ class Database:
         self._database = self._client.get_database(database_name)
         self._collection = self._database.get_collection(collection_name)
 
-    async def create(
-            self,
-            func: DatabaseAction,
-            *args: T,
-            **kwargs: T
-    ) -> T:
-        return await func(self._collection, *args, **kwargs)
+    @property
+    def database(self) -> pymongo.collection.Database:
+        return self._database
 
-    async def read(
-            self,
-            func: DatabaseAction,
-            *args: T,
-            **kwargs: T
-    ) -> T | None:
-        return await func(self._collection, *args, **kwargs)
-
-    async def update(
-            self,
-            func: DatabaseAction,
-            *args: T,
-            **kwargs: T
-    ) -> T | None:
-        return await func(self._collection, *args, **kwargs)
-
-    async def delete(
-            self,
-            func: DatabaseAction,
-            *args: T,
-            **kwargs: T
-    ) -> None:
-        return await func(self._collection, *args, **kwargs)
+    @property
+    def collection(self) -> pymongo.collection.Collection:
+        return self._collection
 
 
 if __name__ == '__main__':  # pragma: no cover
