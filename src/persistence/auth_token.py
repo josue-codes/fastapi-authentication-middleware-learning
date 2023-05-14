@@ -45,7 +45,7 @@ async def read_token(
     if auth_token:
         LOGGER.debug(f'Token Found: {token}')
         return Token(**auth_token)
-    LOGGER.debug(f'Token Not Found')
+    LOGGER.debug(f'Token ({token}) Not Found')
     return None
 
 
