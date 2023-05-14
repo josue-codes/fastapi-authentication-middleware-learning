@@ -1,4 +1,5 @@
 import datetime
+import hashlib
 
 import jwt
 
@@ -10,6 +11,17 @@ LOGGER = get_logger(__name__, CONFIG.app_name)
 ALGORITHM = 'HS256'
 AUTH_TOKEN_EXPIRE_MINUTES = 60
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+
+
+def submitted_password_matches_database(
+        submitted_password: str,
+        database_password
+) -> bool:
+    LOGGER.debug('Attempting to hash and compare passwords')
+    hashed_password = hashlib.sha256(submitted_password.encode()).hexdigest()
+    matched = hashed_password == database_password
+    LOGGER.debug(f'Password comparison evaluated to {matched}')
+    return matched
 
 
 def generate_auth_token(data: dict) -> str:
