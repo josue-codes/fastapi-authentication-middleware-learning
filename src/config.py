@@ -3,6 +3,10 @@ import os
 
 class Config:
     @property
+    def app_name(self):
+        return 'auth'
+
+    @property
     def secret_key(self) -> str:
         return get_env('SECRET_KEY')
 
@@ -19,18 +23,29 @@ class Config:
         return get_env('DB_PROJECT_NAME')
 
     @property
-    def db_name(self) -> str:
-        return get_env('DB_NAME')
+    def db_name_user(self) -> str:
+        return get_env('DB_NAME_USER')
 
     @property
-    def db_collection_name(self) -> str:
-        return get_env('DB_COLLECTION_NAME')
+    def db_collection_name_user(self) -> str:
+        return get_env('DB_COLLECTION_NAME_USER')
+
+    @property
+    def db_name_token(self) -> str:
+        return get_env('DB_NAME_TOKEN')
+
+    @property
+    def db_collection_name_token(self) -> str:
+        return get_env('DB_COLLECTION_NAME_TOKEN')
 
 
 def get_env(env_name: str) -> str:
     if os.getenv(env_name):
         return os.getenv(env_name)
     raise EnvironmentError(f'{env_name} environment variable not set.')
+
+
+CONFIG = Config()
 
 
 if __name__ == '__main__':  # pragma: no cover
