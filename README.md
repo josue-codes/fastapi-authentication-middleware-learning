@@ -11,5 +11,13 @@ Learning more about middleware with FastAPI.
 ## This portion assumes you are using MongoDB as I am
 
 - DB_PROJECT_NAME: name of the mongo project
-- DB_NAME: name of the database
-- DB_COLLECTION_NAME: name of the collection in the database
+
+### User Database
+
+- DB_NAME_USER: name of the database
+- DB_COLLECTION_NAME_USER: name of the collection in the database
+
+### Token Database
+
+- DB_NAME_TOKEN: name of the database
+- DB_COLLECTION_NAME_TOKEN: name of the collection in the database
