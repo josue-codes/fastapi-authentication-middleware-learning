@@ -152,7 +152,7 @@ async def verify_token(
     return token
 
 
-@APP.get('/secure/data')
+@APP.get('/auth/secure/data')
 async def get_secure_data(_: str = Depends(verify_token)):
     return {'data': 'This is secure data'}
 
