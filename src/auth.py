@@ -8,8 +8,6 @@ from src.config import CONFIG
 
 
 LOGGER = get_logger(__name__, CONFIG.app_name)
-ALGORITHM = 'HS256'
-AUTH_TOKEN_EXPIRE_MINUTES = 60
 DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
 
 
@@ -27,10 +25,10 @@ def submitted_password_matches_database(
 def generate_auth_token(data: dict) -> str:
     LOGGER.debug(f'Attempting authorization Token generation for: {data}')
     to_encode = data.copy()
-    expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=AUTH_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=CONFIG.auth_token_expire_minutes)
     LOGGER.debug(f'Expiration for {data} set to {expire.strftime(DATE_FORMAT)}')
     to_encode.update({'exp': expire})
-    encoded_jwt = jwt.encode(to_encode, CONFIG.secret_key, algorithm=ALGORITHM)
+    encoded_jwt = jwt.encode(to_encode, CONFIG.secret_key, algorithm=CONFIG.private_key_algorithm)
     LOGGER.debug('Authorization Token generated')
     return encoded_jwt
 
@@ -38,7 +36,7 @@ def generate_auth_token(data: dict) -> str:
 def decode_auth_token(token: str) -> dict | None:
     try:
         LOGGER.debug(f'Attempting to decode Token: {token}')
-        return jwt.decode(token, CONFIG.secret_key, algorithms=[ALGORITHM])
+        return jwt.decode(token, CONFIG.secret_key, algorithms=[CONFIG.private_key_algorithm])
     except jwt.InvalidTokenError:
         LOGGER.critical(f'Token decoding failed for: {token}')
         return None

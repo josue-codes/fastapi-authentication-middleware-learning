@@ -11,6 +11,14 @@ class Config:
         return get_env('SECRET_KEY')
 
     @property
+    def auth_token_expire_minutes(self):
+        return get_env('TOKEN_SESSION_DURATION')
+
+    @property
+    def private_key_algorithm(self):
+        return get_env('ALGORITHM')
+
+    @property
     def db_username(self) -> str:
         return get_env('DB_USERNAME')
 
