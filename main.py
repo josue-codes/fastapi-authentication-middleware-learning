@@ -81,7 +81,7 @@ async def authenticate_user(username: str, password: str) -> User | None:
     return None
 
 
-@APP.post('/signup')
+@APP.post('/auth/signup')
 async def signup(request: Request):
     data = await request.json()
     username = data.get('username')
@@ -93,7 +93,7 @@ async def signup(request: Request):
     return JSONResponse({'username': user.username})
 
 
-@APP.post('/login')
+@APP.post('/auth/login')
 async def login(request: Request):
     data = await request.json()
     LOGGER.debug(
