@@ -13,7 +13,6 @@ from fastapi.security import (
     HTTPBearer,
     HTTPAuthorizationCredentials,
 )
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 import uvicorn
 
@@ -70,16 +69,6 @@ TOKEN_DATABASE = Database(
 
 APP = FastAPI()
 AUTH_TOKENS: Dict[str, float] = {}
-
-
-for file_sys_obj in STATIC_DIRECTORY.iterdir():
-    if file_sys_obj.is_file():
-        continue
-    APP.mount(
-        path=f'/{file_sys_obj.name}',
-        app=StaticFiles(directory=file_sys_obj.absolute()),
-        name=file_sys_obj.name
-    )
 
 
 async def authenticate_user(username: str, password: str) -> User | None:
