@@ -12,7 +12,7 @@ class Config:
 
     @property
     def auth_token_expire_minutes(self):
-        return get_env('TOKEN_SESSION_DURATION')
+        return int(get_env('TOKEN_SESSION_DURATION'))
 
     @property
     def private_key_algorithm(self):
