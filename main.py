@@ -112,6 +112,15 @@ async def login(request: Request):
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
 
 
+@APP.get('/random')
+def my_random_response():
+    import random
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content={'my random response': random.uniform(0, 500)}
+    )
+
+
 # @APP.middleware('http')
 # async def auth_middleware(request: Request, call_next):
 #     if request.url.path in ['/', '/auth/token']:
